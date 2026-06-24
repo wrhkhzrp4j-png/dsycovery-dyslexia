@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSYCOVERY - เจาะลึกทักษะเฉพาะบุคคล</title>
+    <link rel="stylesheet" href="style-insight.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- 🔊 ปุ่มลำโพงอ่านออกเสียงมุมขวาบนสุด (ถอดแบบมาจากหน้าเกมต้นฉบับ) -->
+    <button type="button" class="btn-speaker-corner" onclick="toggleInsightSpeech()" title="ฟังเสียงคำแนะนำ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+    </button>
+
+    <div class="header">
+        <h1>📊 เจาะลึกทักษะเฉพาะบุคคล</h1>
+        <p class="subtitle">Personal Insight & Growth Guide</p>
+        <div id="age-badge" class="age-badge">กำลังตรวจสอบกลุ่มอายุ...</div>
+    </div>
+
+    <div id="insight-content">
+        <p style="text-align: center; color: #64748b;">กำลังประมวลผลข้อมูลเชิงลึก...</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="action-area">
+        <button onclick="window.print()" class="btn-secondary">🖨️ พิมพ์หรือบันทึกเป็น PDF</button>
+        <button onclick="window.location.href='index.html'" class="btn-primary">🏠 กลับสู่หน้าหลัก</button>
+    </div>
+</div>
+
+<script src="script-insight.js"></script>
+</body>
+</html>

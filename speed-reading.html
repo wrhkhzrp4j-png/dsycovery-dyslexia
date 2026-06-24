@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speed Reading Game</title>
+  <link rel="stylesheet" href="style-game3.css" />
+</head>
+<body>
+ 
+  <div id="app">
+ 
+    <div id="no-support" class="no-support-box" style="display:none;">
+      ⚠️ เบราว์เซอร์นี้ไม่รองรับ Web Speech API<br>กรุณาใช้ <strong>Chrome</strong> หรือ <strong>Edge</strong>
+    </div>
+
+    <div id="intro-section">
+      <button type="button" class="btn-speaker-corner" onclick="toggleInstructionSpeech()" title="ฟังเสียงอ่านกติกา">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+      </button>
+
+      <div style="font-size: 55px; text-align: center; margin-bottom: 10px; margin-top: 15px;">📖</div>
+      <h2>เกมที่ 3: เกมฝึกอ่านเร็ว</h2>
+      <p class="instructions" style="text-align: center; margin-bottom: 25px; color: #666; font-size: 15px;">ทดสอบความถูกต้องและเสถียรภาพในการออกเสียงคำศัพท์กันครับ!</p>
+      
+      <div class="rules-box">
+        <p>👉 สังเกตข้อความหรือประโยคที่ปรากฏในกล่องข้อความตรงกลาง</p>
+        <p>👉 กดปุ่ม <strong>"🎙 เริ่มพูด"</strong> ด้านล่าง แล้วเปล่งเสียงอ่านตามโจทย์</p>
+        <p>👉 เมื่อระบบตรวจพบว่าอ่านถูกต้องแล้ว ให้กดปุ่มเพื่อไปข้อถัดไป</p>
+      </div>
+
+      <button class="start-game-btn" onclick="startGame()">เริ่มเล่นเกม 🎮</button>
+    </div>
+ 
+    <div id="game-section" class="hidden">
+      <div id="question-num">ข้อที่: 1/5</div>
+      <div id="progress-bar-wrap">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="text-card">กำลังโหลดโจทย์...</div>
+      <div id="heard-card">
+        <div id="heard-label">คำที่ได้ยิน:</div>
+        <div id="heard-text">คลิกปุ่มไมค์เพื่อเริ่มพูด...</div>
+      </div>
+      
+      <div class="btn-row">
+        <button id="mic-btn" onclick="toggleMic()">🎙 เริ่มพูด</button>
+        <button id="done-btn" onclick="nextQuestion()" disabled>อ่านเสร็จแล้ว</button>
+        <button id="skip-confirm-btn" onclick="forceSkipQuestion()">ยืนยันคำตอบ</button>
+      </div>
+    </div>
+ 
+    <div id="summary" style="display:none;">
+      <h2>🎉 สรุปผลการอ่าน</h2>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num correct" id="correct-num">0</div>
+          <div class="stat-label">อ่านถูกต้อง</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num wrong" id="wrong-num">0</div>
+          <div class="stat-label">อ่านผิด / ไม่ทัน</div>
+        </div>
+      </div>
+      <button id="finish-btn" onclick="restartGame()">สรุปผล </button>
+    </div>
+ 
+  </div>
+ 
+  <script src="script-game3.js"></script>
+</body>
+</html>
