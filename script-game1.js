@@ -9,7 +9,7 @@ const easyQuestions = [
     { pool: ["m", "n", "m", "m", "m"], answer: "n" },
     { pool: ["p", "p", "p", "q", "p"], answer: "q" },
     { pool: ["ด", "ด", "ต", "ด", "ด"], answer: "ต" },
-    { pool: ["ถ", "ภ", "ภ", "ภ", "ภ"], answer: "ถ" }
+    { pool: ["ถ", "ถ", "ภ", "ภ", "ภ"], answer: "ถ" }
 ];
 
 const hardQuestions = [
