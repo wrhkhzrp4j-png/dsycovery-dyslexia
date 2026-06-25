@@ -1,0 +1,296 @@
+/* ===== style-game1.css — Letter Detective (Updated for Timer Bar & Intro Section) ===== */
+
+/* @import ดึงฟอนต์ OpenDyslexic (อังกฤษ/ตัวเลข) และ Sarabun (ไทย) มาใช้งาน */
+@import url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+/* ใช้ OpenDyslexic สำหรับภาษาอังกฤษ/ตัวเลข และ Sarabun สำหรับภาษาไทย */
+font-family: 'OpenDyslexic', 'Sarabun', sans-serif;
+}
+
+/* 🎯 ปรับปรุงปุ่มลำโพงให้ใหญ่เด่นชัดขึ้น อยู่มุมบนขวาอย่างสมบูรณ์ */
+.btn-speaker-corner {
+position: absolute;
+top: 20px;
+right: 20px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+background: #f1f5f1;
+color: #708e7a;
+border: 1px solid #e1ebe0;
+width: 44px;
+height: 44px;
+border-radius: 12px;
+cursor: pointer;
+transition: all 0.2s ease;
+z-index: 10;
+}
+.btn-speaker-corner:hover {
+background: #e2ede1;
+color: #0f3c4c;
+border-color: #c8e1c4;
+}
+.btn-speaker-corner:active {
+transform: scale(0.95);
+}
+
+body {
+background: #d8ead7; /* สีเขียวเดียวกับหน้าแรก */
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.game-container {
+background: white;
+width: 100%;
+max-width: 430px;
+min-height: 85vh; /* ตั้งค่าความสูงขั้นต่ำเพื่อให้สอดคล้องและยืดหยุ่นในหน้าสรุปผล */
+padding: 40px 30px;
+border-radius: 30px;
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); /* เงาเท่าหน้าแรก */
+text-align: center;
+position: relative;
+display: flex;
+flex-direction: column;
+}
+
+.game-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+/* เอาสไตล์ระดับอายุออกแล้ว */
+
+/* คลาสจัดการส่วนแสดงผลขีดข้อ 1/5 ทางขวาบน */
+.question-counter {
+font-size: 16px;
+font-weight: 600;
+color: #475569;
+}
+
+/* 🟢 Progress Bar แสดงจำนวนข้อ (ขีดเส้นยาวด้านบน) */
+.progress-container {
+width: 100%;
+height: 8px;
+background: #eee;
+border-radius: 10px;
+margin-bottom: 12px;
+overflow: hidden;
+}
+
+.progress-bar {
+height: 100%;
+width: 0%;
+background: #a4cfa0;
+transition: width 0.3s ease;
+}
+
+/* ⏳ โครงสร้างกล่องนอกและหลอดขีดของตัวจับเวลา (Timer Bar) */
+.timer-bar-container {
+width: 100%;
+height: 8px;
+background-color: #e2e8f0;
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 25px;
+}
+
+#timer-bar {
+height: 100%;
+width: 100%;
+background-color: #61b390;
+transition: width 1s linear;
+}
+
+/* 🛠️ ส่วนพื้นที่บอร์ดจัดการเนื้อหาสำหรับการเล่นเกม ดึงให้อยู่กึ่งกลางหน้าจออย่างสมบูรณ์แบบ */
+#game-screen {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex-grow: 1; /* ขยายพื้นที่เพื่อดันปุ่มให้ลงมาตรงกลาง */
+width: 100%;
+}
+
+h2 {
+color: #0f3c4c;
+font-size: 32px;
+font-weight: 700;
+margin-bottom: 12px;
+}
+
+.instructions {
+color: #555;
+font-size: 18px;
+margin-bottom: 45px; /* ดันปุ่มช้อยส์แยกพื้นที่ให้ดูโปร่งตา */
+line-height: 1.5;
+}
+
+/* กล่องตัวอักษรใหญ่ๆ */
+.letter-box {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 16px; /* เพิ่มช่องว่างระหว่างปุ่มให้พอดีไม่เบียดกันเกินไป */
+flex-wrap: wrap;
+width: 100%;
+margin-bottom: 40px;
+}
+
+/* 🎯 ปุ่มตัวอักษรแต่ละตัว ปรับสัดส่วนให้กลมกลืนหนานุ่มน่ากด */
+.char-btn {
+background: #f8fafc;
+color: #0f3c4c;
+border: 2px solid #e2ede1;
+font-size: 42px; /* ขยายอักษรภายในให้ชัดเจนขึ้นสำหรับกลุ่มเด็กเล็ก */
+font-weight: 700;
+width: 82px; /* ขยายขนาดกล่องให้ใหญ่สมส่วนขึ้น */
+height: 82px; /* ขยายขนาดกล่องให้ใหญ่สมส่วนขึ้น */
+border-radius: 22px; /* เพิ่มความโค้งมนมนละมุนสวยงาม */
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(15, 60, 76, 0.03);
+transition: all 0.2s ease-in-out;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+/* เอฟเฟกต์เมื่อผู้เล่นชี้เมาส์ไปที่ตัวอักษร */
+.char-btn:hover {
+border-color: #61b390;
+background-color: #f0f9f5;
+transform: translateY(-4px);
+box-shadow: 0 12px 20px rgba(97, 179, 144, 0.18);
+}
+
+/* เอฟเฟกต์ตอนกดปุ่มช้อยส์ */
+.char-btn:active {
+transform: translateY(-1px);
+}
+
+/* ==========================================================
+📊 โซนหน้าต่างสรุปผลเกมที่ 1 (Match Theme)
+========================================================== */
+
+.hidden {
+display: none !important;
+}
+
+.summary-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+flex-grow: 1;
+padding: 40px 10px 20px 10px;
+width: 100%;
+animation: fadeInUp 0.4s ease-out;
+}
+
+.summary-title {
+font-size: 24px;
+font-weight: 700;
+color: #0f3c4c;
+margin-bottom: 12px;
+}
+
+.summary-subtitle {
+font-size: 15px;
+color: #666;
+margin-bottom: 50px;
+line-height: 1.5;
+}
+
+/* แถวจัดเรียงกล่องคู่แยกฝั่งซ้ายขวา */
+.stat-row {
+width: 100%;
+display: flex;
+gap: 16px;
+justify-content: center;
+margin-bottom: 60px;
+}
+
+/* กล่องคะแนนสไตล์พาสเทลมินิมอล มนโค้ง 20px */
+.stat-box {
+flex: 1;
+background: #f4faf3;
+border: 1px solid #c8e1c4;
+border-radius: 20px;
+padding: 28px 10px;
+}
+
+/* ตัวเลขแสดงคะแนนดิบเด่นชัด */
+.stat-num {
+font-size: 44px;
+font-weight: 700;
+margin-bottom: 6px;
+}
+
+.stat-num.correct { color: #2e7d32; }
+.stat-num.wrong { color: #c0392b; }
+
+.stat-label {
+font-size: 14px;
+color: #555;
+font-weight: 500;
+}
+
+/* ➡️ ปุ่มกดเปลี่ยนหน้าข้ามไปเกมถัดไปปรับเป็นทรงยาวมนโค้งรับกับเซ็ต */
+.btn-next-game {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: #c8e1c4;
+color: #0f3c4c;
+font-size: 18px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+margin-top: auto;
+text-decoration: none;
+}
+
+.btn-next-game:hover {
+background-color: #b7cdb4;
+transform: scale(1.02);
+}
+
+/* แอนิเมชันดันกล่องสรุปขึ้นอย่างนุ่มนวล */
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(12px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Responsive บนมือถือหน้าจอเล็ก */
+@media(max-width: 480px){
+.btn-speaker-corner { width: 38px; height: 38px; top: 15px; right: 15px; }
+.instructions { margin-bottom: 30px; }
+.letter-box { gap: 10px; margin-bottom: 25px; }
+.char-btn { width: 62px; height: 62px; font-size: 32px; border-radius: 16px; }
+.summary-title { font-size: 20px; }
+.summary-subtitle { margin-bottom: 35px; }
+.stat-row { margin-bottom: 40px; }
+.stat-num { font-size: 36px; }
+}

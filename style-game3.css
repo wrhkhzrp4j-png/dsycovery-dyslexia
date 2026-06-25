@@ -1,0 +1,389 @@
+/* ===== style-game3.css — Speed Reading Game (Match Theme Edition) ===== */
+
+/* @import ดึงฟอนต์มาใช้งานตามธีมหลัก */
+@import url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'OpenDyslexic', 'Sarabun', sans-serif;
+}
+
+body {
+background: #d8ead7; /* สีเขียวละมุนนอกกล่องแอป */
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+/* ===== Container การ์ดแอปหลัก ===== */
+#app {
+width: 100%;
+max-width: 430px;
+min-height: 85vh;
+background: #ffffff;
+border-radius: 30px; /* ความโค้งมน 30px สไตล์มนละมุน */
+padding: 35px 25px;
+box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+position: relative;
+overflow: hidden;
+padding-top: 75px; /* เว้นพื้นที่ด้านบนรองรับปุ่มลำโพง */
+}
+
+/* 🔊 ปุ่มลำโพงจิ๋วมุมขวาบนสุด */
+.btn-speaker-corner {
+position: absolute;
+top: 25px;
+right: 25px;
+background: #f4f6f4;
+color: #555555;
+border: none;
+width: 38px;
+height: 38px;
+border-radius: 12px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.2s ease;
+z-index: 20;
+font-size: 14px;
+}
+
+.btn-speaker-corner:hover {
+background: #e2ede1;
+transform: scale(1.05);
+}
+
+/* ===== Progress Bar หลอดเวลาด้านบนสุดตอนเล่นเกม ===== */
+#progress-bar-wrap {
+position: absolute;
+top: 35px;
+left: 25px;
+width: calc(100% - 100px);
+height: 8px;
+background: #eef3ee;
+border-radius: 4px;
+overflow: hidden;
+}
+
+#progress-bar {
+height: 100%;
+width: 100%;
+background: #88c084;
+transition: width 0.1s linear;
+}
+
+/* ===== หน้าอธิบายกติกา (Intro) ===== */
+#intro-section {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+flex-grow: 1;
+}
+
+h2 {
+text-align: center;
+color: #0f3c4c;
+font-size: 25px;
+font-weight: 700;
+margin-top: 10px;
+margin-bottom: 8px;
+}
+
+/* ⬜ กล่องข้อความกติกาที่เป็นสีนวลจางๆ สไตล์มินิมอล */
+.rules-box {
+background: #f4f7f4 !important;
+border: 1px solid #eef3ee !important;
+box-shadow: none !important;
+padding: 24px 20px !important;
+border-radius: 20px !important;
+margin-top: 15px;
+margin-bottom: 30px !important;
+font-size: 14.5px;
+color: #2c3e50;
+line-height: 1.7;
+}
+
+/* 🎮 ปุ่มเริ่มเล่นเกมสีเขียวพาสเทลด้านล่าง */
+.start-game-btn {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: #c8e1c4;
+color: #0f3c4c;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+transition: 0.3s;
+text-align: center;
+margin-top: auto;
+}
+
+.start-game-btn:hover {
+background: #b7cdb4;
+transform: scale(1.02);
+}
+
+/* ===== หน้าเกมหลักและการควบคุม ===== */
+#game-section {
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+
+#question-num {
+text-align: center;
+color: #555;
+font-size: 15px;
+font-weight: 500;
+margin-top: 10px;
+margin-bottom: 25px;
+}
+
+/* โจทย์กล่องตัวอักษรเปลี่ยนเป็นสีนวลพาสเทลเพื่อให้เข้าฟิว */
+#text-card {
+background: #f4f7f4;
+border: 2px dashed #c8e1c4;
+border-radius: 24px;
+padding: 30px 20px;
+text-align: center;
+font-size: 22px;
+font-weight: 700;
+color: #0f3c4c;
+min-height: 140px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
+line-height: 1.6;
+}
+
+/* กล่องแสดงผลคำที่ระบบได้ยิน */
+#heard-card {
+background: #f8faf8;
+border: 1px solid #eef3ee;
+border-radius: 16px;
+padding: 15px 20px;
+margin-bottom: 25px;
+min-height: 80px;
+text-align: center;
+}
+
+#heard-label {
+font-size: 13px;
+font-weight: 600;
+color: #666;
+margin-bottom: 4px;
+}
+
+#heard-text {
+font-size: 16px;
+color: #888;
+font-style: italic;
+line-height: 1.5;
+}
+
+#heard-text.matched {
+color: #2e7d32;
+font-style: normal;
+font-weight: 700;
+}
+
+.btn-row {
+display: flex;
+flex-direction: column;
+gap: 14px;
+margin-top: auto;
+}
+
+/* ปุ่มไมค์ฟิวพาสเทล */
+#mic-btn {
+width: 100%;
+padding: 18px;
+border: none;
+border-radius: 35px;
+background: #c8e1c4;
+color: #0f3c4c;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+text-align: center;
+box-shadow: 0 4px 10px rgba(200, 225, 196, 0.2);
+}
+
+#mic-btn:hover {
+transform: scale(1.02);
+background: #b7cdb4;
+}
+
+#mic-btn.recording {
+background: #ffe5e5;
+border: 1px solid #f9a8a8;
+color: #c0392b;
+animation: pulse-recording 1s infinite;
+}
+
+@keyframes pulse-recording {
+0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.35); }
+50% { box-shadow: 0 0 0 8px rgba(231, 76, 60, 0); }
+}
+
+/* ✨ [แก้ไขจบปัญหา] ล็อกโครงสร้างปุ่มให้เสถียร สวย มนกลมกลืนทุกสถานะระบบสลับคำตอบ ===== */
+#done-btn {
+width: 100% !important;
+padding: 18px 20px !important; /* เพิ่มความสูงหน้าตาอวบอิ่มเต็มจอ */
+border: none !important;
+border-radius: 35px !important; /* ดัดสรีระเป็นวงรีพาสเทลรับกับปุ่มไมค์ */
+font-size: 18px !important;
+font-weight: 700 !important;
+cursor: pointer !important;
+text-align: center !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+transition: all 0.2s ease-in-out !important;
+/* 🎨 สถานะล็อกปิดงาน (Disabled / ตอนเริ่มข้อ) คุมโทนพาสเทลเทานุ่มนวล ไม่ใช่เทาเบราว์เซอร์ */
+background: #e2e8f0 !important;
+color: #94a3b8 !important;
+box-shadow: none !important;
+pointer-events: none !important;
+opacity: 1 !important;
+}
+
+/* ✨ สถานะพร้อมจิ้มใช้งาน (เมื่อระบบ JavaScript ปลดล็อกคำตอบออก) เปลี่ยนสีสีกรมท่าลุ่มลึกทันที */
+#done-btn:not([disabled]):not(:disabled) {
+background: #0f3c4c !important;
+color: #ffffff !important;
+pointer-events: auto !important;
+box-shadow: 0 4px 12px rgba(15, 60, 76, 0.15) !important;
+}
+
+/* เอฟเฟกต์เฉพาะตอนเมาส์ชี้ปุ่มสีกรมท่า */
+#done-btn:not([disabled]):not(:disabled):hover {
+background: #144d61 !important;
+transform: scale(1.02);
+box-shadow: 0 6px 16px rgba(15, 60, 76, 0.25) !important;
+}
+
+/* เอฟเฟกต์ตอนกดปุ่มสีกรมท่า */
+#done-btn:not([disabled]):not(:disabled):active {
+transform: scale(0.98);
+}
+
+/* ===== หน้าสรุปผลคะแนนท้ายเกม ===== */
+#summary {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+flex-grow: 1;
+padding: 10px 0;
+}
+
+.stat-row {
+width: 100%;
+display: flex;
+gap: 12px;
+justify-content: center;
+margin: 25px 0;
+}
+
+.stat-box {
+flex: 1;
+background: #f4f7f4;
+border: 1px solid #c8e1c4;
+border-radius: 20px;
+padding: 20px 10px;
+}
+
+.stat-num {
+font-size: 36px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+
+.stat-num.correct { color: #2e7d32; }
+.stat-num.wrong { color: #c0392b; }
+
+.stat-label { font-size: 13px; color: #555; }
+
+#finish-btn {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: #c8e1c4;
+color: #0f3c4c;
+font-size: 18px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+
+#finish-btn:hover { background: #b7cdb4; transform: scale(1.02); }
+
+.no-support-box {
+background: #fff3cd;
+border-radius: 16px;
+padding: 15px;
+text-align: center;
+color: #856404;
+font-size: 15px;
+line-height: 1.6;
+margin-bottom: 15px;
+}
+
+.hidden { display: none !important; }
+
+/* Responsive สำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 480px) {
+#app { padding: 25px 15px; min-height: 80vh; padding-top: 70px; }
+#progress-bar-wrap { top: 30px; }
+#text-card { font-size: 19px; min-height: 120px; }
+#mic-btn, #done-btn, #finish-btn, .start-game-btn { padding: 14px; font-size: 16px; }
+}
+
+/* ===== 🎨 ปรับปรุงปุ่มยืนยันคำตอบ (ข้ามข้อ) ให้ใหญ่และสวยงามเข้าธีมแอป ===== */
+#skip-confirm-btn {
+width: 100% !important;
+padding: 16px 20px !important; /* เพิ่มความหนาให้กดง่ายถนัดมือรับกับปุ่มด้านบน */
+background: #f1f5f9 !important; /* สีเทาพาสเทลนวลๆ สะอาดตา */
+border: 1px solid #cbd5e1 !important; /* เส้นขอบบางๆ สไตล์มินิมอล */
+color: #475569 !important; /* สีตัวอักษรเทาเข้ม อ่านง่ายไม่หลุดโทน */
+font-size: 16px !important;
+font-weight: 700 !important;
+border-radius: 35px !important; /* ดัดให้เป็นรูปทรงวงรีมนละมุนเข้าเซ็ต */
+cursor: pointer !important;
+transition: all 0.2s ease-in-out !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+margin-top: 5px !important;
+box-shadow: none !important;
+}
+
+/* เอฟเฟกต์ตอนเมาส์ชี้ปุ่มข้าม */
+#skip-confirm-btn:hover {
+background: #e2e8f0 !important;
+transform: scale(1.02);
+}
+
+/* เอฟเฟกต์ตอนใช้นิ้วกดจริง */
+#skip-confirm-btn:active {
+transform: scale(0.98);
+} 
