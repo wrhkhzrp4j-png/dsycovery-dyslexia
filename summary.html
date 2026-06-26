@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSYCOVERY - แดชบอร์ดสรุปผลรวม</title>
+    <link rel="stylesheet" href="style-summary.css">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" class="btn-speaker-corner" onclick="toggleSummarySpeech()" title="ฟังเสียงสรุปผล">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+    </button>
+
+    <h1>📊 แดชบอร์ดสรุปผลทักษะการอ่าน</h1>
+    <p class="subtitle">สรุปผลภาพรวมจากการประเมินเบื้องต้นทั้ง 3 ด้าน</p>
+
+    <div class="overall-card" id="overall-card">
+        <h3>🛡️ ดัชนีระดับทักษะการอ่านโดยรวม</h3>
+        <div id="overall-status" class="status-badge">กำลังคำนวณ...</div>
+        <p id="overall-desc" class="overall-desc"></p>
+    </div>
+
+    <div class="chart-section">
+        <h3>📈 ระดับความคล่องแคล่วรวมทั้ง 3 ด้าน (Overall Skill Mastery)</h3>
+        <div class="progress-container">
+            <div id="overall-bar" class="progress-bar">0%</div>
+        </div>
+    </div>
+
+    <h3>📋 ตารางวิเคราะห์ประสิทธิภาพรายเกม</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ทักษะที่ทดสอบ</th>
+                <th>เกมการเล่น</th>
+                <th class="center-text">คะแนนที่ได้</th>
+                <th class="center-text">สถานะ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>การมองเห็นและจำแนกรูปทรง</b></td>
+                <td>🎮 Letter Detective</td>
+                <td id="score-g1" class="center-text">- / 5</td>
+                <td id="status-g1" class="center-text font-bold">-</td>
+            </tr>
+            <tr>
+                <td><b>การฟังและเชื่อมโยงเสียงคำ</b></td>
+                <td>🔊 Sound Match</td>
+                <td id="score-g2" class="center-text">- / 5</td>
+                <td id="status-g2" class="center-text font-bold">-</td>
+            </tr>
+            <tr>
+                <td><b>ความคล่องแคล่วในการประมวลผล</b></td>
+                <td>📖 Speed Reading</td>
+                <td id="score-g3" class="center-text">- / 5</td>
+                <td id="status-g3" class="center-text font-bold">-</td>
+            </tr>
+            <tr class="total-row">
+                <td>ภาพรวมทักษะเฉลี่ย</td>
+                <td>สรุปรวมดัชนี</td>
+                <td id="avg-score" class="center-text">0%</td>
+                <td id="avg-status" class="center-text font-bold">-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="footnote">💡 หมายเหตุ: ผลการทดสอบนี้เป็นการคัดกรองระดับทักษะเบื้องต้น ไม่ใช่การวินิจฉัยทางการแพทย์</p>
+
+    <button onclick="window.location.href='insight.html'" class="next-btn">
+        ดูบทวิเคราะห์เจาะลึกทักษะเฉพาะบุคคลและรับคำแนะนำ ➡️
+    </button>
+</div>
+
+<script src="script-summary.js"></script>
+</body>
+</html>

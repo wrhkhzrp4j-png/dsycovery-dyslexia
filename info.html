@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSYCOVERY - ข้อมูลโครงการและสาระน่ารู้</title>
+    
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+        /* ==========================================================================
+           🎯 CSS อิงตามสไตล์หลัก: สีโทน ช่องไฟ ความโค้งมน และฟอนต์พิเศษเฉพาะทาง
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* ใช้ OpenDyslexic สำหรับภาษาอังกฤษ/ตัวเลข และ Sarabun สำหรับภาษาไทย */
+            font-family: 'OpenDyslexic', 'Sarabun', sans-serif;
+        }
+
+        body {
+            background: #d8ead7; /* สีพื้นหลังเขียวละมุนตามสไตล์หลัก */
+            color: #333;
+            line-height: 1.8;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f3c4c;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 35px 30px;
+            border-radius: 30px; /* ความโค้งมน 30px ตามสไตล์หลัก */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            color: #0f3c4c;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-left: 5px solid #c8e1c4; /* บาร์สีปุ่มตามสไตล์หลัก */
+            padding-left: 12px;
+        }
+
+        h3 {
+            color: #1b4555;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 15px 0 15px 0;
+        }
+
+        p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* ปุ่มอ่านเฉพาะส่วนย่อยแบบพาสเทลน่ารักๆ */
+        .speak-element-btn {
+            background: #e6f4ea;
+            border: 1px solid #b3e1c1;
+            padding: 5px 12px;
+            border-radius: 15px;
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .speak-element-btn:hover {
+            background: #b3e1c1;
+            color: #0f3c4c;
+        }
+
+        /* กล่องเน้นข้อความ/คำเตือนสำคัญ */
+        .alert-box {
+            background: #fff3f3;
+            border-left: 5px solid #c62828;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .alert-box p {
+            color: #c62828;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        .privacy-box {
+            background: #f4f9f4;
+            border-left: 5px solid #2e7d32;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .privacy-box p {
+            color: #2e7d32;
+            margin-bottom: 0;
+        }
+
+        /* ปุ่มกลับหน้าแรก */
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button.back-btn {
+            background: #c8e1c4; /* สีปุ่มตามสไตล์หลัก */
+            border: none;
+            padding: 15px 50px;
+            border-radius: 30px;
+            font-size: 16px;
+            color: #0f3c4c;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        button.back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        strong {
+            color: #0f3c4c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>DYSCOVERY</h1>
+        <div class="subtitle">คลังข้อมูลความรู้และรายละเอียดแพลตฟอร์ม</div>
+
+        <div class="card">
+            <h2 id="dyslexia-title">รู้จักภาวะดิสเล็กเซีย (Dyslexia)</h2>   
+            <button class="speak-element-btn" onclick="speakElement('dyslexia-title')">
+                🔊 อ่าน
+            </button>
+
+            <p><strong>ภาวะดิสเล็กเซีย Dyslexia คืออะไร?</strong> มาจากรากศัพท์คำว่า <em>dys</em> ที่แปลว่า ผิดปกติ และ <em>lexicon</em> ที่เกี่ยวกับการอ่าน เป็นภาวะความบกพร่องทางประสาทวิทยาที่ส่งผลกระทบต่อการเรียนรู้ภาษา ผู้ที่มีภาวะนี้จะมีความยากลำบากในการอ่าน การเขียน และการสะกดคำ เนื่องจากสมองไม่สามารถเชื่อมโยงเสียงของคำเข้ากับตัวอักษรได้อย่างราบรื่น แต่อย่างไรก็ตาม ผู้ที่มีอาการนี้จะมีระดับสติปัญญา (IQ) และความฉลาดอยู่ในเกณฑ์ปกติ หรือบางคนอาจสูงกว่าเกณฑ์ทั่วไปด้วยซ้ำ</p>
+            
+            <h3 id="cause-title">สาเหตุมาจากอะไรกันนะ?</h3>
+            <button class="speak-element-btn" onclick="speakElement('cause-title')">
+                🔊 อ่าน
+            </button>
+            <p>ภาวะนี้เกิดจากการทำงานที่ต่างไปของสมองส่วนที่เกี่ยวข้องกับการประมวลผลทางภาษา โดยปัจจุบันวงการแพทย์ยืนยันว่ามีแนวโน้มหลักมาจาก <strong>"การถ่ายทอดทางพันธุกรรม"</strong> หากคนในครอบครัวมีประวัติการเป็น ภาวะนี้ก็จะถูกส่งต่อผ่านยีนที่มีผลต่อการพัฒนาสมองซีกซ้าย นอกจากนี้ยังมีปัจจัยเสี่ยงอื่นๆ เช่น การคลอดก่อนกำหนด ทารกมีน้ำหนักต่ำกว่าเกณฑ์ หรือมารดาได้รับสารนิโคตินและแอลกอฮอล์ระหว่างตั้งครรภ์ ซึ่งส่งผลต่อการเจริญเติบโตของสมองส่วนการอ่านตั้งแต่แรกเกิด</p>
+        </div>
+
+        <div class="card">
+            <h2 id="warning-title">สัญญาณเตือนเบื้องต้นแยกตามช่วงวัย</h2>
+            <button class="speak-element-btn" onclick="speakElement('warning-title')">
+                🔊 อ่าน
+            </button>
+            <p>แม้ภาวะนี้จะเป็นมาตั้งแต่กำเนิด แต่จะเริ่มแสดงสัญญาณและตรวจพบได้ชัดเจนที่สุดในช่วงอายุ 3 - 12 ปี หรือช่วงที่เด็กเริ่มเข้าสู่ระบบโรงเรียน โดยสามารถสังเกตอาการเบื้องต้นได้ดังนี้</p>
+            
+            <ul>
+                <li><strong>ช่วงเด็ก (อายุ 0-9 ปี):</strong> เด็กจะเริ่มมีอาการพูดช้ากว่าวัยเดียวกัน นึกคำศัพท์ไม่ออก ออกเสียงสลับกันบ่อยๆ (เช่น สลับพยางค์ในคำ) สับสนคำที่เสียงคล้ายกัน และมีปัญหาอย่างมากในการจดจำคำคล้องจอง เพลงเด็ก รวมถึงการจำชื่อสีหรือตัวเลขพื้นฐาน</li>
+                <li><strong>ช่วงวัยรุ่น (อายุ 10-18 ปี):</strong> เป็นช่วงที่พบอาการชัดเจนที่สุดเมื่อเด็กต้องเริ่มเรียนหนังสือ โดยเด็กจะอ่านหนังสือช้ามากและติดขัด สะกดคำและประสมคำไม่ได้ สับสนตัวอักษรที่หน้าตาคล้ายกัน (เช่น บ-ด, ถ-ภ หรือ b-d, p-q) มักเขียนตัวอักษรกลับด้านเหมือนส่องกระจก และเริ่มมีพฤติกรรมต่อต้านหรือหลีกเลี่ยงการอ่านหนังสือเพราะรู้สึกเครียด</li>
+                <li><strong>ช่วงผู้ใหญ่ (อายุ 19 ปีขึ้นไป):</strong> สำหรับผู้ที่ไม่ได้รับการช่วยเหลือในวัยเด็ก อาการจะเปลี่ยนมาเป็นการอ่านจับใจความได้ช้ามาก ต้องใช้เวลาอ่านซ้ำหลายรอบ สับสนทิศทางซ้าย-ขวา มีปัญหาในการวางแผนและบริหารเวลา รวมถึงมักจะนึกคำพูดไม่ค่อยออกเมื่อต้องอธิบายเรื่องราวยาวๆ คล้ายมีคำติดอยู่ที่ปลายลิ้นตลอดเวลา</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 id="target-title">แบบทดสอบนี้เหมาะกับใครบ้าง?</h2>
+            <button class="speak-element-btn" onclick="speakElement('target-title')">
+                🔊 อ่าน
+            </button>
+            <p>แบบทดสอบนี้ถูกออกแบบมาสำหรับทุกคนที่รู้สึกว่า "ตัวอักษร" กำลังเป็นอุปสรรคในการใช้ชีวิต โดยเฉพาะกลุ่มบุคคลดังต่อไปนี้:</p>
+            
+            <ul>
+                <li><strong>คุณพ่อคุณแม่และผู้ปกครอง:</strong> ที่สังเกตเห็นว่าลูกน้อย (อายุ 3 ปีขึ้นไป) มีพัฒนาการด้านภาษาช้า พูดสลับคำ หรือเมื่อเข้าโรงเรียนแล้วน้องอ่านหนังสือช้ามาก สะกดคำไม่ได้ เขียนตัวอักษรกลับด้าน และเริ่มมีพฤติกรรมไม่อยากไปโรงเรียนหรือต่อต้านการอ่านหนังสือ</li>
+                <li><strong>คุณครูและบุคลากรทางการศึกษา:</strong> ที่ต้องการเครื่องมือช่วยคัดกรองเบื้องต้น เพื่อเช็กว่านักเรียนในชั้นเรียนที่เรียนดีในวิชาอื่น แต่กลับตกหล่นในวิชาภาษาไทยหรือภาษาอังกฤษ กำลังเผชิญกับภาวะ Dyslexia อยู่หรือไม่ จะได้หาแนวทางช่วยเหลืออย่างเหมาะสม</li>
+                <li><strong>วัยรุ่นและผู้ใหญ่:</strong> ที่รู้ตัวเองมาตลอดว่าเราอ่านหนังสือช้ากว่าคนอื่น ต้องอ่านซ้ำหลายรอบถึงจะเข้าใจ สับสนทิศทางซ้าย-ขวา สะกดคำง่ายๆ ผิดบ่อยจนเสียความมั่นใจ หรือมักจะนึกคำพูดไม่ออกเวลาต้องอธิบายเรื่องราวยาวๆ และต้องการค้นหาคำตอบเพื่อทำความเข้าใจกับระบบการทำงานของสมองตัวเองให้มากขึ้น</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 id="system-title">ระบบการทำงานและมิติวัดผล</h2>
+            <button class="speak-element-btn" onclick="speakElement('system-title')">
+                🔊 อ่าน
+            </button>
+            <p><strong>เปลี่ยน 'แบบทดสอบ' ให้เป็น 'การผจญภัย':</strong> แพลตฟอร์ม DYSCOVERY พัฒนาขึ้นมาเพื่อเป็นเครื่องมือช่วยคัดกรองเบื้องต้น (Screening Tool) ที่เข้าถึงง่าย แม่นยำ โดยระบบไม่ได้ใช้การทำข้อสอบกระดาษแบบเดิมที่ทำให้เกิดความเครียด แต่ใช้เนื้อเรื่อง (Storytelling) และภารกิจในเกม (Gamification) เพื่อให้ผู้ทดสอบแสดงพฤติกรรมการอ่านที่เป็นธรรมชาติที่สุด</p>
+            
+            <h3 id="metrics-title">มิติในการวิเคราะห์ผลลัพธ์ (Personalized Metrics)</h3>
+            <button class="speak-element-btn" onclick="speakElement('metrics-title')">
+                🔊 อ่าน
+            </button>
+            <ul>
+                <li><strong>Phonological Awareness (การตระหนักรู้ด้านเสียง):</strong> ประเมินความสามารถในการแยกแยะเสียงสระ พยัญชนะ และการผสมเสียง ผ่านเกมการจับคู่เสียงหรือการเติมคำในช่องว่าง</li>
+                <li><strong>Visual Processing & Memory (การประมวลผลและการจำภาพ):</strong> วัดทักษะการมองเห็นและการจดจำรูปทรงของตัวอักษรไทยที่มีความคล้ายคลึงกัน (เช่น ผ-พ, ถ-ภ, ด-ต) ผ่านเกมจับผิดภาพหรือเกมเปิดป้ายจับคู่</li>
+                <li><strong>Reading Fluency & Response Time (ความคล่องแคล่วและความเร็วในการตอบสนอง):</strong> ระบบจะบันทึกระยะเวลาที่ใช้ในการคิดและเลือกคำตอบ เพื่อวิเคราะห์ความเร็วในการประมวลผลของสมองส่วนที่เกี่ยวข้องกับการอ่าน</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 id="standard-title">เกณฑ์มาตรฐานและความปลอดภัยข้อมูล</h2>
+            <button class="speak-element-btn" onclick="speakElement('standard-title')">
+                🔊 อ่าน
+            </button>
+            <p><strong>หลักเกณฑ์อ้างอิง:</strong> ชุดแบบทดสอบและเครื่องมือในเกมได้รับการออกแบบโดยอิงตามเกณฑ์มาตรฐานสากล เช่น คู่มือการวินิจฉัยและสถิติสำหรับความผิดปกติทางจิต <strong>(DSM-5)</strong> ในหมวด Specific Learning Disorder (SLD) ร่วมกับการปรับใช้ให้สอดคล้องกับโครงสร้างและธรรมชาติของภาษาไทย</p>
+            <p><strong>กระบวนการพัฒนาและตรวจสอบ (Validation Process):</strong> แพลตฟอร์ม DSYCOVERY ผ่านกระบวนการออกแบบและทดสอบร่วมกับผู้เชี่ยวชาญหลากหลายแขนง ทั้งนักพัฒนาซอฟต์แวร์ (Developers), นักจิตวิทยาเด็กและวัยรุ่น (Child Psychologists), รวมถึงครูผู้เชี่ยวชาญด้านการศึกษาพิเศษ (Special Education Teachers) เพื่อให้มั่นใจว่าเนื้อหาในเกมมีความเหมาะสมกับระดับพัฒนาการและมีประสิทธิภาพในการคัดกรองเบื้องต้น</p>
+
+            <div class="privacy-box">
+                <p>🔒 <strong>ความเป็นส่วนตัวของข้อมูล (Child Privacy First):</strong> ระบบมีการเข้ารหัสข้อมูลส่วนบุคคลขั้นสูง โดยข้อมูลส่วนบุคคลจะถูกเก็บเป็นความลับสูงสุด โดยข้อมูลพฤติกรรมการเล่นเกมจะถูกนำไปวิเคราะห์ในภาพรวมแบบไม่ระบุตัวตน (Anonymous Data) เพื่อใช้ประโยชน์ในงานวิจัยและพัฒนาปรับปรุงอัลกอริทึมของแพลตฟอร์มให้มีความแม่นยำยิ่งขึ้นในอนาคตเท่านั้น</p>
+            </div>
+
+            <div class="alert-box">
+                <p>⚠️ ข้อควรทราบสำคัญ: แพลตฟอร์ม DSYCOVERY เป็นเพียงเครื่องมือในการคัดกรองและประเมินความเสี่ยงเบื้องต้นเท่านั้น ผลลัพธ์ที่ได้ไม่สามารถทดแทนการวินิจฉัยทางการแพทย์อย่างเป็นทางการ หากระบบประเมินว่าอยู่ในกลุ่มเสี่ยง แนะนำให้เข้าพบแพทย์ผู้เชี่ยวชาญด้านพัฒนาการหรือนักจิตวิทยาเพื่อรับการประเมินอย่างละเอียดต่อไป</p>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="global-speak-btn back-btn">
+                🔊 อ่านทั้งหน้า
+            </button>
+
+            <br><br>
+
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                กลับสู่หน้าหลัก
+            </button>
+        </div>
+    </div>
+
+    <script src="global-speaker.js"></script>
+</body>
+</html>

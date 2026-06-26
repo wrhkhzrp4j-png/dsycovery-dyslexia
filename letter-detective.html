@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dsycovery - Game 1: Letter Detective</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-game1.css">
+</head>
+<body>
+
+    <div class="game-container">
+        
+        <div id="introSection" style="text-align: center; padding: 20px 0;">
+            <button type="button" class="btn-speaker-corner" onclick="speakIntro()" title="ฟังเสียงอ่านวิธีเล่น">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+
+            <div style="font-size: 60px; margin-bottom: 10px;">🕵️‍♂️</div>
+            <h2>เกมที่ 1: นักสืบตัวอักษร</h2>
+            <p class="instructions" style="margin-bottom: 30px;">มาทดสอบความช่างสังเกตและความเร็วในการมองเห็นตัวอักษรกัน!</p>
+            
+            <div id="intro-text-card" style="text-align: left; background: #fafdfa; border: 1px solid #e2e8f0; padding: 20px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="margin-bottom: 10px;">👉 ระบบจะแสดงกลุ่มตัวอักษรขึ้นมาบนหน้าจอ</p>
+                <p style="margin-bottom: 10px;">👉 ให้สังเกตและมองหาตัวอักษรที่มีรูปร่าง <strong>"แตกต่างจากพวก"</strong> ให้เจอ</p>
+                <p style="margin-bottom: 0;">👉 คลิกเลือกตัวอักษรที่แตกต่างนั้น <strong>ให้เร็วที่สุดภายในเวลาที่กำหนด</strong></p>
+            </div>
+
+            <button class="btn-next-game" id="btn-start-play">เริ่มเล่นเกม 🎮</button>
+        </div>
+
+        <div id="gameMainContent" class="hidden">
+            <button type="button" class="btn-speaker-corner" onclick="speakGameplay()" title="ฟังเสียงอ่านโจทย์">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+
+            <div class="game-header" style="display: none;"> 
+                <div class="level-badge" id="age-level" style="display: none;">ระดับ: กำลังโหลด...</div>
+                <div class="timer" id="timer" style="display: none;">⏱️ เวลา: --</div>
+            </div>
+
+            <div class="timer-bar-container" style="margin-top: 25px; margin-bottom: 15px;">
+                <div class="timer-bar" id="timer-bar"></div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 25px;">
+                <span id="question-counter-text" class="question-counter" style="font-weight: 600; color: #475569; font-size: 18px;">ข้อที่: 1/5</span>
+            </div>
+
+            <div id="gamePlaySection">
+                <h2>เกมที่ 1: นักสืบตัวอักษร 🕵️‍♂️</h2>
+                <p class="instructions">จงคลิกเลือกตัวอักษรที่ <strong style="color: #dc2626;">"แตกต่าง"</strong> จากพวกให้เร็วที่สุด!</p>
+
+                <div class="letter-box" id="letter-display"></div>
+            </div>
+        </div>
+
+        <div class="summary-container hidden" id="result-area">
+            <h2 class="summary-title">📊 สรุปผล เกมที่ 1: นักสืบตัวอักษร</h2>
+            <p class="summary-subtitle">คลิกเลือกตัวอักษรที่แตกต่างจากพวกให้เร็วที่สุด</p>
+            
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num correct" id="correct-num">0</div>
+                    <div class="stat-label">หาเจอถูกต้อง</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-num wrong" id="wrong-num">0</div>
+                    <div class="stat-label">หาผิด / ไม่ทัน</div>
+                </div>
+            </div>
+
+            <button class="btn-next-game" onclick="window.location.href='word-builder.html'">ไปเล่นเกมถัดไป ➡️</button>
+        </div>
+    </div>
+
+    <script src="script-game1.js"></script>
+</body>
+</html>

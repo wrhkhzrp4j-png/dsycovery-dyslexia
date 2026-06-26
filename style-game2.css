@@ -1,0 +1,264 @@
+/* ===== style-game2.css — Word Builder Game (ปรับปรุงใหม่) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Sarabun', sans-serif;
+}
+
+body {
+background: #d8ead7;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+/* ===== 🛠️ ส่วนที่ 1: เพิ่มพื้นที่ด้านบนการ์ดรองรับแถวปุ่มลำโพง ===== */
+.game-container {
+width: 100%;
+max-width: 430px;
+min-height: 85vh;
+background: #ffffff;
+border-radius: 30px;
+padding: 35px 25px;
+box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+position: relative;
+overflow: hidden;
+padding-top: 85px; /* 🌟 ปรับเพิ่มความสูงจากเดิม 75px เพื่อให้มีช่องไฟด้านบนเปิดกว้างโปร่งตา */
+}
+
+/* ===== 🛠️ ส่วนที่ 2: ดันปุ่มลำโพงขึ้นไปอยู่แถวบนสุดริมขวา ขยายขนาดให้กดง่ายสมส่วน ===== */
+.btn-speaker-corner {
+position: absolute;
+top: 18px; /* 🌟 ขยับปุ่มขึ้นไปชิดขอบบนสุดเหนือหลอดจับเวลา */
+right: 25px;
+background: #f1f5f1;
+color: #708e7a;
+border: 1px solid #e1ebe0;
+width: 42px; /* 🌟 ขยายโครงสร้างปุ่มกล่องรับสเกลให้ใหญ่เต็มนิ้วรับกับธีมหลัก */
+height: 42px;
+border-radius: 12px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.2s ease;
+z-index: 30; /* 🌟 เพิ่มระดับชั้นความสูงให้อยู่เหนือทุกองค์ประกอบ */
+}
+
+.btn-speaker-corner:hover {
+background: #e2ede1;
+color: #0f3c4c;
+border-color: #c8e1c4;
+transform: scale(1.05);
+}
+
+/* ===== 🛠️ ส่วนที่ 3: จัดหลอดเวลาให้อยู่ใต้ปุ่มลำโพง และขยายความยาวเต็มแผ่นการ์ด ===== */
+.timer-container {
+position: absolute;
+top: 72px; /* 🌟 ย้ายตำแหน่งลงมาด้านล่าง เพื่อหลบแถวปุ่มลำโพงด้านบนอย่างเป็นระเบียบ */
+left: 25px;
+width: calc(100% - 50px); /* 🌟 ขยายหลอดเวลาให้ยาวเต็มพิกัดซ้าย-ขวาของการ์ดขาวอย่างสมส่วน */
+height: 8px;
+background: #eef3ee;
+border-radius: 4px;
+overflow: hidden;
+z-index: 10;
+}
+
+.timer-bar {
+height: 100%;
+width: 100%;
+background: #88c084;
+/* ⚡ เคล็ดลับลดการสะดุด: ใช้ linear สำหรับการคำนวณหลอด และขยายเวลาของช่วงการเปลี่ยนผ่านกว้างขึ้น */
+transition: width 1s linear;
+}
+
+h2 {
+text-align: center;
+color: #0f3c4c;
+font-size: 25px;
+font-weight: 700;
+margin-top: 10px;
+margin-bottom: 8px;
+}
+
+#gamePlaySection {
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+justify-content: space-between;
+}
+
+.top-section {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 10px;
+margin-bottom: 15px;
+}
+
+.question-counter {
+font-size: 15px;
+font-weight: 500;
+color: #555;
+text-align: center;
+width: 100%;
+}
+
+/* 🔊 ขยายปุ่มกดฟังเสียงโจทย์กลางจอให้ใหญ่และเด่นชัดขึ้น */
+.speaker-btn {
+background: #f4f7f4;
+border: 2px dashed #c8e1c4;
+font-size: 38px; /* ปรับขนาดไอคอนลำโพงเพิ่มขึ้น */
+width: 95px; /* ปรับวงกลมให้ใหญ่ขึ้นเด่นสะดุดตา */
+height: 95px;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 15px auto 30px auto;
+transition: all 0.2s ease;
+}
+
+.speaker-btn:hover {
+transform: scale(1.06);
+background: #e2ede1;
+}
+
+/* ⬜ ขยายขนาดช่องวางคำตอบ (สี่เหลี่ยมด้านบน) */
+.answer-slots {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 30px;
+min-height: 54px;
+flex-wrap: wrap;
+}
+
+.slot {
+width: 52px; /* ขยายขนาดความกว้างบล็อก */
+height: 52px; /* ขยายขนาดความสูงบล็อก */
+border: 1px solid #cbd5e1;
+background: #f8fafc;
+border-radius: 14px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 22px; /* ปรับตัวอักษรข้างในให้ใหญ่ชัดเจน */
+font-weight: bold;
+color: #0f3c4c;
+cursor: pointer;
+}
+
+/* 🔠 ขยายขนาดคลังบล็อกตัวอักษรให้เลือก (แถวล่าง) ให้ใหญ่สะใจเด็กๆ */
+.letter-bank {
+display: flex;
+justify-content: center;
+gap: 12px;
+margin-bottom: 40px;
+flex-wrap: wrap;
+}
+
+.letter-btn {
+width: 52px; /* บังคับเป็นสี่เหลี่ยมจัตุรัสเพื่อให้ขนาดล้อไปกับกล่องรับคำตอบ */
+height: 52px;
+background: #c8e1c4;
+border: none;
+color: #0f3c4c;
+font-size: 22px; /* ตัวอักษรใหญ่เด่นชัด */
+font-weight: bold;
+border-radius: 14px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: 0.2s;
+box-shadow: 0 4px 0 #b7cdb4;
+}
+
+.letter-btn:hover {
+transform: translateY(-2px);
+}
+
+.letter-btn:active {
+transform: translateY(2px);
+box-shadow: none;
+}
+
+.submit-btn {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: #0f3c4c;
+color: white;
+font-size: 17px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+text-align: center;
+}
+
+.submit-btn:hover {
+transform: scale(1.02);
+}
+
+.next-game-btn {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: #c8e1c4;
+color: #0f3c4c;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+transition: 0.3s;
+text-align: center;
+margin-top: auto;
+}
+
+.next-game-btn:hover {
+background: #b7cdb4;
+transform: scale(1.02);
+}
+
+.stat-row {
+width: 100%;
+display: flex;
+gap: 12px;
+justify-content: center;
+margin: 25px 0;
+}
+
+.stat-box {
+flex: 1;
+background: #f4f7f4;
+border: 1px solid #c8e1c4;
+border-radius: 20px;
+padding: 20px 10px;
+text-align: center;
+}
+
+.stat-num {
+font-size: 36px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+.stat-num.correct { color: #2e7d32; }
+.stat-num.wrong { color: #c0392b; }
+.stat-label { font-size: 13px; color: #555; }
+
+.summary-title { text-align: center; margin-bottom: 5px; }
+.summary-subtitle { text-align: center; color: #666; font-size: 14px; }
+
+.hidden { display: none !important; } 
